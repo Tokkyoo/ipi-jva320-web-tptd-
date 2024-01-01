@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Aide à domicile RH - gestion des salariés</title>
+    <link rel="stylesheet" href="./static/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/font-awesome.css">
+    <th:block th:replace="common :: navbar">
+</head>
+<body>
+
+
+<div class="container mt-2">
+    <div class="jumbotron">
+        <h1><span th:text="${title}">26</span></h1>
+        <p>Voir dans <code>README.md</code> comment configurer la base de données de l'application, la lancer et afficher une page statique.</p>
+        <p>Cette application est développée sous forme de Controllers Spring MVC et templates Thymeleaf. Les premiers sont à développer et les seconds à enrichir à partir des pages HTML existantes.</p>
+        <p/>
+        <p>Fonctionnalités attendues pour l'application :</p>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Rendu des pages web développées en phase de design (Natural Templating)</h4>
+                <p class="list-group-item-text">Afficher cette page sans rendu Thymeleaf. Il suffit d'aller à <a href="http://localhost:8080/home.html">http://localhost:8080/home.html</a>. Si vous lisez ces lignes, c'est que vous y êtes arrivés !</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Page d'accueil</h4>
+                <p class="list-group-item-text">La racine de l'application doit rediriger sur le présent template Thymeleaf. Développer le bon HomeController pour cela.</em>.</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Message en page d'accueil</h4>
+                <p class="list-group-item-text">Rendre configurable le message de bienvenue sur la présente page (Bienvenue dans l'interface d'administration RH !) dans le fichier de messages de l'application (main/resources/messages(en/fr(_FR)).properties)</em>.</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Afficher le nombre de salariés</h4>
+                <p class="list-group-item-text">Dans le titre au-dessus, "26" doit être remplacé par le nombre de salariés réellement en base. Développer ou enrichir la bonne méthode mappée de Controller en utilisant méthode countSalaries() de SalarieAideADomicileService pour cela (à injecter dans le Controller en l'annotannt @Autowired).</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Afficher la page des détails d'un salarié</h4>
+                <p class="list-group-item-text">Développer ou enrichir le bon Controller pour rendre le template du détail d'un salarié "detail_Salarie.html" en allant à <a href="http://localhost:8080/salaries/1">http://localhost:8080/salaries/1</a>.</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Afficher le détail d'un salarié de test</h4>
+                <p class="list-group-item-text">Dans le Controller, passer à la vue un salarié de test créé à la volée, par exemple par :</p>
+                <code>
+                    SalarieAideADomicile aide = new SalarieAideADomicile("Jeannette Dupontelle",
+                        LocalDate.of(2021, 7, 1), LocalDate.now(),
+                        0, 0, 10,
+                        1, 0);
+                </code>
+                <p class="list-group-item-text">et en afficher les données lors du rendu dynamique, en enrichissant la page detail_Salarie.html des bons attributs Thymeleaf (utiliser th:text...).</p>
+                <p class="list-group-item-text">Il est aussi possible de réaliser à la place directement l'étape "Afficher le détail des salariés créés".</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Création d'un salarié aide à domicile</h4>
+                <p class="list-group-item-text">En allant à <a href="http://localhost:8080/salaries/aide/new">http://localhost:8080/salaries/aide/new</a> ou via le bouton <em>Nouveau salarié</em> présent dans la liste des salariés, on accède au formulaire de création d'un salarié. Développer ou enrichir le bon Controller pour traiter l'appel <code>POST /salaries/save</code> avec les données du formulaire qui sont envoyées de manière à récupérer ces dernières côté serveur et en créer un nouveau salarié en utilisant la bonne méthode de SalarieAideADomicileService (donc à injecter dans le controller à l'aide de l'annotation @Autowired).</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Afficher le détail des salariés créés</h4>
+                <p class="list-group-item-text">Modifier la (méthode de) Controller précédemment créée pour qu'elle ne retourne plus le salarié de test créé à la volée (ou uniquement s'il n'y en a pas ou sur id 0) mais les données réelles stockées dans la base de données, en utilisant la bonne méthode de SalarieAideADomicileService.</p>
+                <p class="list-group-item-text">Que se passe-t-il en allant à <a href="http://localhost:8080/salaries/1000">http://localhost:8080/salaries/1000</a>, est-ce normal ?</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Afficher la liste des salariés</h4>
+                <p class="list-group-item-text">Développer ou enrichir le bon Controller pour rendre le template de liste des salariés "list.html" en allant à <a href="http://localhost:8080/salaries">http://localhost:8080/salaries</a>. Puis lui faire passer à la vue la liste des salariés stockées en base de données en utilisant la bonne méthode de SalarieAideADomicileService, et enfin dans "list.html" faire afficher les données de tous les salariés ainsi passées lors du rendu dynamique, en l'enrichissant des bons attributs Thymeleaf (utiliser aussi th:each...). Faire en sorte que les salariés d'exemple en dur dans la page web soient toujours affichés en statique mais disparaissent en rendu dynamique.</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Modification d'un salarié</h4>
+                <p class="list-group-item-text">En allant à <a href="http://localhost:8080/salaries/1">http://localhost:8080/salaries/1</a> (page de détail du salarié d'id 1), il est possible de modifier les informations du salarié d'identifiant 1 qui sont persistées en base de donnée lorsqu'on clique sur le bouton <em>Enregistrer</em>. L'URL qui est appelée est <code>POST /salaries/1</code> avec les données du formulaire qui sont envoyées (NB. en API REST ce serait un PUT mais il s'agit de Controllers de pages web).</p>
+                <p class="list-group-item-text">Développer ou enrichir le bon Controller pour réaliser cela, et côté web réutiliser detail_Salarie.html (comme le code du Controller et donc leurs URLs et les valeurs affichées dans le template HTML diffèrent dans les deux cas création et modification, il faut utiliser des expressions conditionnelles ternaires Thymeleaf pour supporter les deux à la fois). Une alternative permettant de se passer d'expressions conditionnelles ternaires Thymeleaf est de plutôt le copier vers new_Salarie.html.
+                Attention, le
+                </p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">Réutilisation du head HTML par un fragment</h4>
+                <p class="list-group-item-text">Le HTML des pages fournies comporte des redites. Créer un template Thymeleaf common.html contenant un fragment qui mutualise le code HTML du head HTML entre au moins 2 pages.</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">BONUS Pagination de la liste des salariés</h4>
+                <p class="list-group-item-text">En allant à <a href="http://localhost:8080/salaries?page=0&amp;size=10&amp;sortDirection=ASC&amp;sortProperty=nom">http://localhost:8080/salaries?page=0&amp;size=10&amp;sortDirection=ASC&amp;sortProperty=nom</a>, tous les salariés doivent être affichés, de manière paginée (il est possible de changer de page en utilisant les boutons). Développer ou enrichir le bon Controller pour cela, en utilisant la bonne méthode de SalarieAideADomicileService (il faut au moins modifier le mapping et rajouter des paramètres à l'appel à SalarieAideADomicileService).</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">BONUS Afficher les erreurs</h4>
+                <p class="list-group-item-text">Afficher sur la page du détail d'un salarié les erreurs de création, modification ou suppression de salarié dans quelques cas à imaginer. Les erreurs concernées peuvent être : en TD de désérialisation (trouver comment envoyer des valeurs erronées au serveur), en BONUS de validation (rajouter <code>@NotBlank(message="Requis !") private String nom;</code>dans SalarieAideADomicile et la dépendance à spring-boot-validation dans le pom.xml), en TP les exceptions métier ou techniques levées par le service... Si elles n'y sont pas déjà, elles peuvent être mises dans le BindingResult (à y rajouter en "globalError") ou passées à la vue explicitement. Et dans la vue, elles peuvent être accédées par la syntaxe <code>#fields.errors('monChamp')</code> ou le cas échéant explicitement.
+                    Faire le
+                </p>
+            </li>
+
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">TP - Suppression d'un salarié</h4>
+                <p class="list-group-item-text">En allant à <a href="http://localhost:8080/salaries/1">http://localhost:8080/salaries/1</a> (page de détail du salarié d'id 1), il est possible de supprimer le salarié affiché lorsqu'on clique sur le bouton <em>Supprimer</em>. L'appel qui est effectué est <code>GET /salaries/1/delete</code> (NB. en API REST ce serait un PUT mais il s'agit de Controllers de pages web).</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">TP - Recherche par nom</h4>
+                <p class="list-group-item-text">Lorsqu'on recherche le nom <em>Jeanne Dupond</em> dans la barre de recherche, son salarié doit être affiché dans les résultats s'il est créé. L'URL auquel on accède est <code>/salariés?nom=Jeanne Dupond</code>. Lorsqu'on recherche un nom inexistant commme <em>123456</em>, on obtient une erreur 404. Développer ou enrichir le bon Controller pour cela, en utilisant la bonne méthode de SalarieAideADomicileService.</p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">TP - Réutilisation de la barre de navigation par un fragment</h4>
+                <p class="list-group-item-text">Le HTML des pages fournies comporte des redites. Créer un template Thymeleaf common.html contenant un fragment qui mutualise le code HTML de la barre de navigation HTML entre au moins 2 pages.</p>
+            </li>
+
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading">BONUS TP - Utilisation pour les 2 d'un seul fragment qui est paramétré</h4>
+                <p class="list-group-item-text">Utiliser dans les 2 cas vus de fragments plutôt un seul fragment qui soit paramétré (faire une sauvegarde des pages à modifier d'abord dans u sous-dossier).</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+</body></html>

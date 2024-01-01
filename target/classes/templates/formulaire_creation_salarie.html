@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Gestion des salariés</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/font-awesome.css">
+    <th:block th:replace="common :: navbar">
+</head>
+<body>
+
+
+
+<div class="container">
+    <div th:text="#{msg.salarie}"></div><!-- TODO better messages example -->
+
+    <h2>Détail du salarié</h2>
+
+    <form id="saveForm" action="http://localhost:8080/salaries/aide/" method="post" class="row">
+
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="form-control-label" for="id">ID</label>
+                <input type="text" value="" class="form-control" name="id" id="id" disabled="true">
+
+                <label class="form-control-label" for="nom">Nom</label>
+                <input type="text" value="" class="form-control" name="nom" id="nom">
+
+                <label class="form-control-label" for="nom">moisEnCours</label>
+                <input type="date" value="" class="form-control" name="moisEnCours" id="moisEnCours">
+
+                <label class="form-control-label" for="nom">moisDebutContrat</label>
+                <input type="date" value="" class="form-control" name="moisDebutContrat" id="moisDebutContrat">
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="form-group">
+
+                <div>
+                    <label class="form-control-label" for="nom">joursTravaillesAnneeN</label>
+                    <div class="input-group">
+                        <input type="number" step="0.5" value="" class="form-control" name="joursTravaillesAnneeN" id="joursTravaillesAnneeN">
+                        <div class="input-group-append">
+                            <span class="input-group-text">j</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-control-label" for="nom">congesPayesAcquisAnneeN</label>
+                    <div class="input-group">
+                        <input type="number" step="0.5" value="" class="form-control" name="congesPayesAcquisAnneeN" id="congesPayesAcquisAnneeN">
+                        <div class="input-group-append">
+                            <span class="input-group-text">j</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div>
+                <label class="form-control-label" for="nom">joursTravaillesAnneeNMoins1</label>
+                <div class="input-group">
+                    <input type="number" step="0.5" value="" class="form-control" name="joursTravaillesAnneeNMoins1" id="joursTravaillesAnneeNMoins1">
+                    <div class="input-group-append">
+                        <span class="input-group-text">j</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="form-control-label" for="nom">congesPayesAcquisAnneeNMoins1</label>
+                <div class="input-group">
+                    <input type="number" step="0.5" value="" class="form-control" name="congesPayesAcquisAnneeNMoins1" id="congesPayesAcquisAnneeNMoins1">
+                    <div class="input-group-append">
+                        <span class="input-group-text">j</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="form-control-label" for="nom">congesPayesPrisAnneeNMoins1</label>
+                <div class="input-group">
+                    <input type="number" step="0.5" value="" class="form-control" name="congesPayesPrisAnneeNMoins1" id="congesPayesPrisAnneeNMoins1">
+                    <div class="input-group-append">
+                        <span class="input-group-text">j</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+    <div class="row mt-2">
+        <div class="col-lg-6">
+            <input form="saveForm" class="btn btn-primary" type="submit" value="Enregistrer">
+            <a href="/salaries/10/delete" class="btn btn-danger">Supprimer</a>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body></html>
